@@ -33,8 +33,20 @@ body{
     margin: 5px;
 }
 .controls_btn button{
+    all:unset;
+    cursor: pointer;
+    text-align: center;
     height: 40px;
-    width: 65px;
+    width: 85px;
     border-radius: 10px;
     background-color: white;
+    box-shadow: 1px 3px 5px 4px #b9b9b954;
+    border: 1px solid #00000038;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.controls_btn button:active{
+    transform: scale(0.9);
 }
