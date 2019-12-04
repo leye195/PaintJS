@@ -21,9 +21,20 @@ function startPainting(){
 function stopPainting(){
     painting=false;
 }
+function canvasX(x){
+    let bound=canvas.getBoundingClientRect();
+    let bw=5;
+    return (x-bound.left-bw)*(canvas.width/(bound.width-bw*2));
+}
+function canvasY(y){
+    let bound=canvas.getBoundingClientRect();
+    let bw=5;
+    return (y-bound.top-bw)*(canvas.height/(bound.height-bw*2));
+}
 function onMouseMove(e){
-    const x=e.offsetX || (e.touches[0].pageX-e.touches[0].target.offsetLeft);
-    const y=e.offsetY || (e.touches[0].pageY-e.touches[0].target.offsetTop);
+    const x=canvasX(e.clientX) || (e.touches[0].pageX-e.touches[0].target.offsetLeft);
+    const y=canvasY(e.clientY) || (e.touches[0].pageY-e.touches[0].target.offsetTop);
+    console.log(e.touches[0])
     if(!painting){
         ctx.beginPath();
         ctx.moveTo(x,y);
