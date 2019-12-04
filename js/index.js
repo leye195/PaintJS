@@ -32,16 +32,14 @@ function canvasY(y){
     return (y-bound.top-bw)*(canvas.height/(bound.height-bw*2));
 }
 function onMouseMove(e){
-    const x=canvasX(e.clientX) || (e.touches[0].pageX-e.touches[0].target.offsetLeft);
-    const y=canvasY(e.clientY) || (e.touches[0].pageY-e.touches[0].target.offsetTop);
-    //console.log(e.touches[0])
+    const x=canvasX(e.clientX) || canvasX(e.touches[0].pageX)//canvas.getBoundingClientRect().left)//e.touches[0].target.offsetLeft);
+    const y=canvasY(e.clientY) || canvasY(e.touches[0].pageY)//canvas.getBoundingClientRect().top)//e.touches[0].target.offsetTop);
     if(!painting){
         ctx.beginPath();
         ctx.moveTo(x,y);
     }else{
         ctx.lineTo(x,y);
         ctx.stroke();
-        //ctx.closePath();
     }
 } 
 function setColor(e){
@@ -105,7 +103,7 @@ function init(){
         canvas.addEventListener("mouseup",stopPainting);
         canvas.addEventListener("touchend",stopPainting);
         canvas.addEventListener('mouseleave',stopPainting);
-        canvas.addEventListener('touchcancel',stopPainting)
+        //canvas.addEventListener('touchcancel',stopPainting)
         canvas.addEventListener('click',handleCanvasClick);
         //protect the image form context menu
         canvas.addEventListener('contextmenu',handleCM);
