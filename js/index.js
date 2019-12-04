@@ -34,7 +34,7 @@ function canvasY(y){
 function onMouseMove(e){
     const x=canvasX(e.clientX) || (e.touches[0].pageX-e.touches[0].target.offsetLeft);
     const y=canvasY(e.clientY) || (e.touches[0].pageY-e.touches[0].target.offsetTop);
-    console.log(e.touches[0])
+    //console.log(e.touches[0])
     if(!painting){
         ctx.beginPath();
         ctx.moveTo(x,y);
