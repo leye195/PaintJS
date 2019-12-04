@@ -1,0 +1,16 @@
+@keyframes FadeIn{
+    from{
+        opacity: 0.0;
+    }
+    to{
+        opacity: 1.0;
+    }
+}
+@keyframes side-open{
+    from{
+        width: 0%;
+    }
+    to{
+        width: 20%;
+    }
+}

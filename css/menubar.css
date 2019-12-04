@@ -1,0 +1,47 @@
+.menubar{
+    position: absolute;
+    right: 0;
+    margin-right: 0.5rem;
+    z-index: 1;
+}
+.open,.close{
+    cursor: pointer;
+}
+.gallery{
+    width:20%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    z-index: -1;
+    background-color: #9cc8ff;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+    visibility: hidden;
+}
+.gallery[class~="op"]{ 
+    visibility: hidden;
+}
+.gallery[class~="cl"]{
+    animation: side-open 1.5s;
+    visibility: visible;
+}
+.gallery>div{
+    height: 55px;
+}
+div[class^="bar"]{
+    width: 30px;
+    height: 6px;
+    background: white;
+    margin: 5px;
+}
+.close .bar1{
+    transform: translateY(11px) rotate(45deg) 
+}
+.close .bar2{
+    visibility: hidden;
+}
+.close .bar3{
+    transform: translateY(-11px) rotate(-45deg);
+}

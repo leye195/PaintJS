@@ -16,7 +16,12 @@ ctx.fillStyle="#ffffff";
 ctx.fillRect(0,0,WIDTH,HEIGHT);
 ctx.lineWidth=2.5;
 function startPainting(){
-    painting=true;
+    ctx.beginPath();
+    if(!filling)
+        painting=true;
+    else{
+        handleCanvasClick()
+    }
 }
 function stopPainting(){
     painting=false;
@@ -32,10 +37,10 @@ function canvasY(y){
     return (y-bound.top-bw)*(canvas.height/(bound.height-bw*2));
 }
 function onMouseMove(e){
+    e.preventDefault();
     const x=canvasX(e.clientX) || canvasX(e.touches[0].pageX)//canvas.getBoundingClientRect().left)//e.touches[0].target.offsetLeft);
     const y=canvasY(e.clientY) || canvasY(e.touches[0].pageY)//canvas.getBoundingClientRect().top)//e.touches[0].target.offsetTop);
     if(!painting){
-        ctx.beginPath();
         ctx.moveTo(x,y);
     }else{
         ctx.lineTo(x,y);
@@ -57,7 +62,6 @@ function handleModeClick(){
         painting=false;
         mode.innerText="paint";
         ctx.fillStyle=currentColor;
-
     }else{
         filling=false;
         painting=true;
@@ -73,7 +77,7 @@ function handleCM(e){
     e.preventDefault();
 }
 function handleSave(){
-    modelContainer.style.visibility="visible";
+    modelContainer.style.display="flex";
     /*const img=canvas.toDataURL("image/jpeg");
     const link=document.createElement("a");
     link.href=img;
@@ -91,8 +95,7 @@ function handleSaveFile(){
     }
 }
 function handleCancel(){
-    //console.log(modelContainer.style);
-    modelContainer.style.visibility="hidden";
+    modelContainer.style.display="none";
 }
 function init(){
     if(canvas){
@@ -103,7 +106,6 @@ function init(){
         canvas.addEventListener("mouseup",stopPainting);
         canvas.addEventListener("touchend",stopPainting);
         canvas.addEventListener('mouseleave',stopPainting);
-        //canvas.addEventListener('touchcancel',stopPainting)
         canvas.addEventListener('click',handleCanvasClick);
         //protect the image form context menu
         canvas.addEventListener('contextmenu',handleCM);
