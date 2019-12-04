@@ -3,6 +3,7 @@ const colors=document.querySelectorAll(".control__color"),range=document.querySe
 const mode=document.querySelector("#jsMode"),save=document.querySelector("#jsSave");
 const modelContainer=document.querySelector(".modal-container"),cancel=document.querySelector(".cancel-btn"),
 input=document.querySelector(".img_name"),confirm=document.querySelector(".confirm-btn");
+const selector=document.querySelector("#typeSelect");
 
 const ctx=canvas.getContext('2d');
 const WIDTH=700,HEIGHT=600
@@ -69,6 +70,18 @@ function handleModeClick(){
         ctx.strokeStyle=currentColor;
     }
 }
+function handleLineCap(e){
+    const selected=selector.options[selector.selectedIndex].value;
+    console.log(selected);
+    if(selected==="butt"){
+        ctx.lineJoin="miter";
+    }else if(selected==="round"){
+        ctx.lineJoin="round";
+    }else if(selected=="square"){
+        ctx.lineJoin="bevel";
+    }
+    ctx.lineCap=selected;
+}
 function handleCanvasClick(){
     if(filling)
         ctx.fillRect(0,0,WIDTH,HEIGHT);
@@ -129,8 +142,8 @@ function init(){
                 if(e.code==="Enter")
                     handleSaveFile();
             })
-        
+        if(selector)
+            selector.addEventListener("change",handleLineCap)
     }
-    
 }
 init();

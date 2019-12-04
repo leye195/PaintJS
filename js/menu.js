@@ -7,7 +7,6 @@ function openMenu(){
         if(menu.classList.contains("op")){
             menu.classList.remove("op");
             menu.classList.add("cl");
-            //menu.style.width="20%";
         }
         
     }else{
@@ -16,8 +15,7 @@ function openMenu(){
         if(menu.classList.contains("cl")){
             menu.classList.remove("cl");
             menu.classList.add("op");
-            //menu.style.width="0%";
-            //menu.style.display="none";
+
         }
     }
 }
