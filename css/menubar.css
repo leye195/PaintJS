@@ -58,3 +58,8 @@ a{
     color:#e8e8e8;
     background-color: #475a7d;
 }
+.menuitem+img{
+    width: 90%;
+    height: 65%;
+    border-radius: 20px;
+}
